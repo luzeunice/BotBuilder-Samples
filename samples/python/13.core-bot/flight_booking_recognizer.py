@@ -24,13 +24,17 @@ class FlightBookingRecognizer(Recognizer):
                 configuration.LUIS_API_KEY,
                 "https://" + configuration.LUIS_API_HOST_NAME,
             )
-
+            
+            print('Configurado')
             self._recognizer = LuisRecognizer(luis_application)
 
     @property
     def is_configured(self) -> bool:
         # Returns true if luis is configured in the config.py and initialized.
+        # print("recognize")
+        
         return self._recognizer is not None
 
     async def recognize(self, turn_context: TurnContext) -> RecognizerResult:
+       
         return await self._recognizer.recognize(turn_context)
